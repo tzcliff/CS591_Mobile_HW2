@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Part2</string>
+    <string name="celsius_fahrenheit"><![CDATA[CELSIUS >> FAHRENHEIT]]></string>
+    <string name="enter_celsius">Enter Celsius</string>
+    <string name="fahrenheit">Fahrenheit</string>
+</resources>
