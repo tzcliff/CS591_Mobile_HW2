@@ -41,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
                             //if cal, do calculation when operator pressed
 
     private boolean flag;
-    private boolean percen_flag;
+    private boolean percenFlag;
+    private boolean dotFlag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         button_equal = (Button)findViewById(R.id.button_equal);
         flag = true;
-        percen_flag = true;
+        percenFlag = true;
 
         reset();
         //bind events
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         button_devide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate(flag);
+                calculate();
                 ref = true;
                 cal = true;
                 op = 3;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         button_times.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate(flag);
+                calculate();
                 ref = true;
                 cal = true;
                 op = 2;
@@ -105,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         button_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate(flag);
+                calculate();
                 ref = true;
                 cal = true;
                 op = 1;
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate(flag);
+                calculate();
                 ref = true;
                 cal = true;
                 op = 0;
@@ -137,16 +138,14 @@ public class MainActivity extends AppCompatActivity {
                 String input = et_input.getText().toString();
                 if (input.length()>0){
                     double opNum = Double.valueOf(input);
-                    if (percen_flag) {
+                    if (percenFlag) {
                         opNum /= 100;
-                        percen_flag = false;
+                        percenFlag = false;
                     }
                     et_input.setText(String.valueOf(opNum));
                 }
             }
         });
-
-
 
         button_seven.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -224,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
         button_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate(flag);
+                calculate();
                 ref = true;
                 cal = false;
             }
@@ -237,11 +236,12 @@ public class MainActivity extends AppCompatActivity {
         ref = true;
         cal = true;
         flag = true;
-        percen_flag = true;
+        percenFlag = true;
+        dotFlag = true;
         et_input.setText("0");
     }
-    private void calculate(boolean f){
-        if (f == true) {
+    private void calculate(){
+        if (flag == true) {
             if (!cal || et_input.getText().length() == 0)
                 return;
             double opNum = Double.valueOf(et_input.getText().toString());
@@ -268,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
                 default:
                     break;
             }
+
             if (rst == Math.floor(rst)) {
                 et_input.setText(String.valueOf((long) rst));
             } else
@@ -276,22 +277,40 @@ public class MainActivity extends AppCompatActivity {
             return;
         } else return;
     }
-    private void setNum(String num){
-        if (ref||
-                Double.valueOf(et_input.getText().toString())==0){
-            et_input.setText(num);
-            ref = false;
-            if (!cal) {
-                rst = 0;
-                op = 0;
-                cal = true;
+
+    private String addDot(String str) {
+        ref = false;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '.') {
+                dotFlag = false;
+                return str;
             }
         }
-        else{
-            String input = et_input.getText().toString();
-            et_input.setText(input+num);
+        dotFlag = true;
+        return str + ".";
+    }
+
+    private void setNum(String num) {
+        if (num.equals(".")) {
+            String current = et_input.getText().toString();
+            System.out.println(current);
+            et_input.setText(addDot(current));
+        } else {
+            if (ref ) {
+                et_input.setText(num);
+                ref = false;
+                if (!cal) {
+                    rst = 0;
+                    op = 0;
+                    cal = true;
+                }
+            } else {
+                String input = et_input.getText().toString();
+                et_input.setText(input + num);
+
+            }
         }
         flag = true;
-        percen_flag = true;
+        percenFlag = true;
     }
 }
