@@ -1,0 +1,3 @@
+include ':part2', ':myapplication', ':part2', ':part2', ':Part2'
+
+
