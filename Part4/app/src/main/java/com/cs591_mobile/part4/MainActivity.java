@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                             //if cal, do calculation when operator pressed
 
     private boolean flag;
+    private boolean percen_flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         button_equal = (Button)findViewById(R.id.button_equal);
         flag = true;
+        percen_flag = true;
 
         reset();
         //bind events
@@ -135,10 +137,15 @@ public class MainActivity extends AppCompatActivity {
                 String input = et_input.getText().toString();
                 if (input.length()>0){
                     double opNum = Double.valueOf(input);
-                    et_input.setText(String.valueOf(opNum/100));
+                    if (percen_flag) {
+                        opNum /= 100;
+                        percen_flag = false;
+                    }
+                    et_input.setText(String.valueOf(opNum));
                 }
             }
         });
+
 
 
         button_seven.setOnClickListener(new View.OnClickListener() {
@@ -229,10 +236,11 @@ public class MainActivity extends AppCompatActivity {
         op = 0;
         ref = true;
         cal = true;
+        flag = true;
+        percen_flag = true;
         et_input.setText("0");
     }
     private void calculate(boolean f){
-
         if (f == true) {
             if (!cal || et_input.getText().length() == 0)
                 return;
@@ -284,5 +292,6 @@ public class MainActivity extends AppCompatActivity {
             et_input.setText(input+num);
         }
         flag = true;
+        percen_flag = true;
     }
 }
