@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean ref, cal;//if refresh is false, refresh text when input #s
                             //if cal, do calculation when operator pressed
 
+    private boolean flag;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         button_dot = (Button)findViewById(R.id.button_dot);
 
         button_equal = (Button)findViewById(R.id.button_equal);
+        flag = true;
 
         reset();
         //bind events
@@ -82,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         button_devide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
+                calculate(flag);
                 ref = true;
                 cal = true;
                 op = 3;
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         button_times.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
+                calculate(flag);
                 ref = true;
                 cal = true;
                 op = 2;
@@ -100,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         button_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
+                calculate(flag);
                 ref = true;
                 cal = true;
                 op = 1;
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
+                calculate(flag);
                 ref = true;
                 cal = true;
                 op = 0;
@@ -214,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         button_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
+                calculate(flag);
                 ref = true;
                 cal = false;
             }
@@ -228,29 +231,42 @@ public class MainActivity extends AppCompatActivity {
         cal = true;
         et_input.setText("0");
     }
-    private void calculate(){
-        if (!cal||et_input.getText().length()==0)
+    private void calculate(boolean f){
+
+        if (f == true) {
+            if (!cal || et_input.getText().length() == 0)
+                return;
+            double opNum = Double.valueOf(et_input.getText().toString());
+
+            flag = false;
+            switch (op) {
+                case 0:
+                    rst = rst + opNum;
+                    break;
+                case 1:
+                    rst = rst - opNum;
+                    break;
+                case 2:
+                    rst = rst * opNum;
+                    break;
+                case 3:
+                    if (opNum == 0) {
+                        et_input.setText("error");
+                        ref = true;
+                        return;
+                    }
+                    rst = rst / opNum;
+                    break;
+                default:
+                    break;
+            }
+            if (rst == Math.floor(rst)) {
+                et_input.setText(String.valueOf((long) rst));
+            } else
+                et_input.setText(String.valueOf(rst));
+            flag = false;
             return;
-        double opNum = Double.valueOf(et_input.getText().toString());
-        switch(op){
-            case 0:rst = rst+opNum;break;
-            case 1:rst = rst-opNum;break;
-            case 2:rst = rst*opNum;break;
-            case 3:
-                if (opNum == 0){
-                    et_input.setText("error");
-                    ref = true;
-                    return;
-                }
-                rst = rst/opNum;
-                break;
-            default:break;
-        }
-        if (rst == Math.floor(rst)){
-            et_input.setText(String.valueOf((long)rst));
-        }
-        else
-            et_input.setText(String.valueOf(rst));
+        } else return;
     }
     private void setNum(String num){
         if (ref||
@@ -267,5 +283,6 @@ public class MainActivity extends AppCompatActivity {
             String input = et_input.getText().toString();
             et_input.setText(input+num);
         }
+        flag = true;
     }
 }
