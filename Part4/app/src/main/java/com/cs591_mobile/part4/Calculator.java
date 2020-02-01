@@ -117,4 +117,11 @@ public class Calculator {
         percenFlag = true;
         return ans;
     }
+
+    public String sqrt(double num) {
+        if (num < 0 ) {
+            return "ERROR";
+        }
+        return String.valueOf(Math.sqrt(num));
+    }
  }

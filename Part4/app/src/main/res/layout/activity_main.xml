@@ -185,15 +185,27 @@
                 android:text="."
                 android:textSize="30sp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/button_sqrt"
+                android:layout_width="103dp"
+                android:layout_height="80dp"
+                android:text="sqrt"
+                android:textSize="30sp"
+                android:textColor="#1C8BC2" />
+            <Button
+                android:id="@+id/button_equal"
+                android:layout_width="103dp"
+                android:layout_height="80dp"
+                android:background="#FA8B57"
+                android:text="="
+                android:textColor="#F0F0F0"
+                android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/button_equal"
-            android:layout_width="103dp"
-            android:layout_height="160dp"
-            android:background="#FA8B57"
-            android:text="="
-            android:textColor="#F0F0F0"
-            android:textSize="30sp" />
-
+                android:textSize="30sp" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
