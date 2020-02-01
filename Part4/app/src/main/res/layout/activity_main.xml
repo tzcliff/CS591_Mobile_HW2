@@ -17,6 +17,7 @@
         android:background="#f0f0f0"
         android:gravity="bottom|right"
         android:inputType="none"
+        android:maxLength="9"
         android:textSize="36sp" />
 
     <LinearLayout
