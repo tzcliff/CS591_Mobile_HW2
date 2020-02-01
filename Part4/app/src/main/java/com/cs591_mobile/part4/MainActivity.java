@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private Button button_dot;
 
     private Button button_equal;
+    private Button button_sqrt;
 
     private Calculator calculator;
 
@@ -67,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         button_dot = (Button)findViewById(R.id.button_dot);
 
         button_equal = (Button)findViewById(R.id.button_equal);
+        button_sqrt = (Button)findViewById(R.id.button_sqrt);
+
         calculator = new Calculator();
         reset();
         //bind events
@@ -138,6 +141,17 @@ public class MainActivity extends AppCompatActivity {
                         calculator.setPercenFlag(false);
                     }
                     et_input.setText(String.valueOf(opNum));
+                }
+            }
+        });
+
+        button_sqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String input = et_input.getText().toString();
+                if (input.length() > 0) {
+                    double op = Double.valueOf(input);
+                    et_input.setText(calculator.sqrt(op));
                 }
             }
         });
