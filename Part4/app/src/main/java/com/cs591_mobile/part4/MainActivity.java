@@ -2,6 +2,7 @@ package com.cs591_mobile.part4;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -144,6 +145,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                     et_input.setText(String.valueOf(opNum));
                 }
+            }
+        });
+
+        et_input.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
             }
         });
 
