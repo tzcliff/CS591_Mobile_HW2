@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center|center_horizontal|center_vertical"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/num1_txtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        style="@style/LabelStyle"
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="188dp" />
 
     <TextView
         android:id="@+id/num2_txtView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        style="@style/LabelStyle"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="188dp" />
 
@@ -19,15 +30,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        style="@style/LabelStyle"
         tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="188dp" />
-
-    <TextView
-        android:id="@+id/num1_txtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="61dp"
         tools:layout_editor_absoluteY="188dp" />
 
     <Button
@@ -35,8 +39,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ADD"
+        android:textSize="16pt"
+        android:background="#ff0000"
+        android:textColor="#00AEFF"
         tools:layout_editor_absoluteX="147dp"
         tools:layout_editor_absoluteY="250dp" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

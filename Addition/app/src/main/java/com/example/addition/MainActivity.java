@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
         int num1 = randomGenerator.generate(10, 1);
         int num2 = randomGenerator.generate(10, 1);
-        int num3 = 3;
 
         num1_txt = (TextView)findViewById(R.id.num1_txtView);
         num2_txt = (TextView)findViewById(R.id.num2_txtView);
@@ -32,16 +31,16 @@ public class MainActivity extends AppCompatActivity {
         num1_txt.setText(String.valueOf(num1));
         num2_txt.setText(String.valueOf(num2));
 
-        /*addButton.setOnClickListener(new View.OnClickListener() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int n1 = Integer.parseInt(num1_txt.getText().toString());
                 int n2 = Integer.parseInt(num2_txt.getText().toString());
 
                 int res = n1 + n2;
-                res_txt.setText(res);
+                res_txt.setText(String.valueOf(res));
             }
-        });*/
+        });
     }
 
 
