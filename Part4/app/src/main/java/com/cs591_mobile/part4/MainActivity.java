@@ -35,14 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button_equal;
 
-    private double rst;//last result
-    private int op;
-    private boolean ref, cal;//if refresh is false, refresh text when input #s
-                            //if cal, do calculation when operator pressed
-
-    private boolean flag;
-    private boolean percenFlag;
-    private boolean dotFlag;
+    private Calculator calculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +67,7 @@ public class MainActivity extends AppCompatActivity {
         button_dot = (Button)findViewById(R.id.button_dot);
 
         button_equal = (Button)findViewById(R.id.button_equal);
-        flag = true;
-        percenFlag = true;
-
+        calculator = new Calculator();
         reset();
         //bind events
         button_C.setOnClickListener(new View.OnClickListener() {
@@ -88,37 +79,41 @@ public class MainActivity extends AppCompatActivity {
         button_devide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
-                ref = true;
-                cal = true;
-                op = 3;
+                String res = calculator.calFuction(et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
+                calculator.setRef(true);
+                calculator.setCal(true);
+                calculator.setOp(3);
             }
         });
         button_times.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
-                ref = true;
-                cal = true;
-                op = 2;
+                String res = calculator.calFuction(et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
+                calculator.setRef(true);
+                calculator.setCal(true);
+                calculator.setOp(2);
             }
         });
         button_minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
-                ref = true;
-                cal = true;
-                op = 1;
+                String res = calculator.calFuction(et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
+                calculator.setRef(true);
+                calculator.setCal(true);
+                calculator.setOp(1);
             }
         });
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
-                ref = true;
-                cal = true;
-                op = 0;
+                String res = calculator.calFuction(et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
+                calculator.setRef(true);
+                calculator.setCal(true);
+                calculator.setOp(0);
             }
         });
 
@@ -126,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String input = et_input.getText().toString();
-                if (input.length()>0){
+                if (input.length() > 0){
                     input = input.substring(0, input.length()-1);
                     et_input.setText(input);
                 }
@@ -138,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
                 String input = et_input.getText().toString();
                 if (input.length()>0){
                     double opNum = Double.valueOf(input);
-                    if (percenFlag) {
+                    if (calculator.percenFlag) {
                         opNum /= 100;
-                        percenFlag = false;
+                        calculator.setPercenFlag(false);
                     }
                     et_input.setText(String.valueOf(opNum));
                 }
@@ -150,167 +145,95 @@ public class MainActivity extends AppCompatActivity {
         button_seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("7");
+                String res = calculator.setNum("7", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("8");
+                String res = calculator.setNum("8", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("9");
+                String res = calculator.setNum("9", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("4");
+                String res = calculator.setNum("4", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("5");
+                String res = calculator.setNum("5", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("6");
+                String res = calculator.setNum("6", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("1");
+                String res = calculator.setNum("1", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("2");
+                String res = calculator.setNum("2", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("3");
+                String res = calculator.setNum("3", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
         button_zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum("0");
+                String res = calculator.setNum("0", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
-        button_zero.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setNum("0");
-            }
-        });
+
         button_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setNum(".");
+                String res = calculator.setNum(".", et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
             }
         });
 
         button_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                calculate();
-                ref = true;
-                cal = false;
+                String res = calculator.calFuction(et_input.getText().toString());
+                if (!res.equals("")) et_input.setText(res);
+                calculator.setRef(true);
+                calculator.setCal(false);
             }
         });
     }
 
     private void reset(){
-        rst = 0;
-        op = 0;
-        ref = true;
-        cal = true;
-        flag = true;
-        percenFlag = true;
-        dotFlag = true;
+        calculator.clean();
         et_input.setText("0");
-    }
-    private void calculate(){
-        if (flag == true) {
-            if (!cal || et_input.getText().length() == 0)
-                return;
-            double opNum = Double.valueOf(et_input.getText().toString());
-
-            flag = false;
-            switch (op) {
-                case 0:
-                    rst = rst + opNum;
-                    break;
-                case 1:
-                    rst = rst - opNum;
-                    break;
-                case 2:
-                    rst = rst * opNum;
-                    break;
-                case 3:
-                    if (opNum == 0) {
-                        et_input.setText("error");
-                        ref = true;
-                        return;
-                    }
-                    rst = rst / opNum;
-                    break;
-                default:
-                    break;
-            }
-
-            if (rst == Math.floor(rst)) {
-                et_input.setText(String.valueOf((long) rst));
-            } else
-                et_input.setText(String.valueOf(rst));
-            flag = false;
-            return;
-        } else return;
-    }
-
-    private String addDot(String str) {
-        ref = false;
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '.') {
-                dotFlag = false;
-                return str;
-            }
-        }
-        dotFlag = true;
-        return str + ".";
-    }
-
-    private void setNum(String num) {
-        if (num.equals(".")) {
-            String current = et_input.getText().toString();
-            System.out.println(current);
-            et_input.setText(addDot(current));
-        } else {
-            if (ref ) {
-                et_input.setText(num);
-                ref = false;
-                if (!cal) {
-                    rst = 0;
-                    op = 0;
-                    cal = true;
-                }
-            } else {
-                String input = et_input.getText().toString();
-                et_input.setText(input + num);
-
-            }
-        }
-        flag = true;
-        percenFlag = true;
     }
 }
