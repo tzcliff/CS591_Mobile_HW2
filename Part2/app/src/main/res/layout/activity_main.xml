@@ -7,6 +7,17 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/btn_swap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/swap"
+        android:gravity="center_horizontal"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="110dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
         android:id="@+id/btn_convert"
         android:layout_width="wrap_content"
         android:gravity="center_horizontal"
@@ -42,14 +53,5 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_swap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Swap"
-        android:gravity="center_horizontal"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="94dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
