@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
     tools:context=".MainActivity">
 
 
@@ -16,6 +15,7 @@
         android:layout_height="290dp"
         android:background="#f0f0f0"
         android:gravity="bottom|right"
+
         android:inputType="none"
         android:maxLength="9"
         android:textSize="36sp" />
