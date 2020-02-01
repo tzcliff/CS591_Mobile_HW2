@@ -13,11 +13,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String MyFlag = "KOBE";  //this will be our trail of breadcrumbs for logging events.
     private static int eventCount = 0;
 
-
     private Button btnSayHello;
     private TextView tvMsg;
     private EditText edtMsg;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,62 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onPause State Transition");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onStart State Transition");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onSaveInstanceState State Transition");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onRestoreInstanceState State Transition");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onResume State Transition");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onRestart State Transition");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onStop State Transition");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        eventCount++;
+        Log.i(MyFlag, intToStr(eventCount) + ": Activity onDestroy State Transition");
     }
 
     //Handy Helpers...
